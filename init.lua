@@ -47,24 +47,6 @@ require('lazy').setup({
     },
   },
 
-  -- Fuzzy Finder (files, lsp, etc)
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-    },
-  },
-
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -302,22 +284,18 @@ miniclue.setup({
     miniclue.gen_clues.registers(),
     miniclue.gen_clues.windows(),
     miniclue.gen_clues.z(),
+
+    -- document existing key chains
     { mode = 'n', keys = '<Leader>c', desc = '+[C]ode' },
     { mode = 'n', keys = '<Leader>d', desc = '+[D]ocument' },
+    { mode = 'n', keys = '<Leader>g', desc = '+[G]it' },
+    { mode = 'n', keys = '<Leader>h', desc = '+More [G]it' },
+    { mode = 'n', keys = '<Leader>r', desc = '+[R]ename' },
+    { mode = 'n', keys = '<Leader>s', desc = '+[S]earch' },
+    { mode = 'n', keys = '<Leader>w', desc = '+[W]orkspace' },
   },
 })
 
-
--- document existing key chains
---require('which-key').register {
---  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
---  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
---  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
---  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
---  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
---  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
---  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
---}
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
